@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import { useState, useEffect, type FormEvent } from 'react';
+import { useState, useEffect, cloneElement, type ReactElement } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
   Github, 
@@ -26,19 +26,15 @@ import {
   Users,
   Search,
   Twitter,
-  ArrowDown
+  ArrowDown, 
+  FileText,
+  Terminal,
+  Database,
+  Server
 } from 'lucide-react';
 import { PERSONAL_INFO, PROJECTS, EXPERIENCES, SKILL_GROUPS, CONTRIBUTIONS, EDUCATION, CERTIFICATIONS } from './data';
 
 // --- Components ---
-
-const TopBanner = () => {
-  return (
-    <div className="banner-gradient py-2 px-6 text-center text-white text-[10px] font-black uppercase tracking-[0.3em]">
-      Available for Lead Engineering & Architecture Roles • Q2 2026 Strategy
-    </div>
-  );
-};
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -59,7 +55,6 @@ const Navbar = () => {
 
   return (
     <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300`}>
-      <TopBanner />
       <div className={`transition-all duration-300 ${isScrolled ? 'glass py-4 shadow-xl' : 'py-8'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <a href="#" className="flex items-center gap-3">
@@ -84,7 +79,7 @@ const Navbar = () => {
             ))}
             <a 
               href="#contact" 
-              className="px-6 py-2.5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-brand transition-all active:scale-95"
+              className="px-6 py-2.5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-brand hover:text-black transition-all active:scale-95"
             >
               Contact
             </a>
@@ -120,7 +115,7 @@ const Navbar = () => {
               <a 
                 href="#contact" 
                 onClick={() => setMobileMenuOpen(false)}
-                className="w-full py-4 bg-brand text-black text-center font-black rounded-xl"
+                className="w-full py-4 bg-slate-900 text-white text-center font-black rounded-xl"
               >
                 Hire Me
               </a>
@@ -134,7 +129,7 @@ const Navbar = () => {
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 overflow-hidden border-b border-black/5 bg-white">
+    <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-10 overflow-hidden border-b border-black/5 bg-white">
       {/* Dynamic Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
         <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-brand/5 rounded-full blur-[120px]" />
@@ -148,22 +143,30 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <div className="inline-flex items-center gap-2 px-4 py-2 glass rounded-full mb-10 shadow-sm">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-brand"></span>
-            </span>
-            <span className="text-[10px] font-black uppercase tracking-[0.2em] text-slate-500">Engineering Leader available</span>
+          <div className="mb-14">
+            <h1 className="text-3xl md:text-6xl font-black tracking-tighter text-slate-900 mb-12 uppercase italic leading-[0.9]">
+              Building <span className="text-gradient">fast, scalable,</span> <br/>
+              and visually stunning <br/>
+              web experiences.
+            </h1>
+            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+              {[
+                { name: 'Frontend', icon: <Code2 />, color: 'text-blue-500' },
+                { name: 'Systems', icon: <Cpu />, color: 'text-purple-500' },
+                { name: 'Architecture', icon: <Globe />, color: 'text-brand' },
+              ].map((tech) => (
+                <div key={tech.name} className="flex flex-col items-center gap-3 group">
+                  <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-[2.5rem] flex items-center justify-center text-slate-300 group-hover:text-slate-900 group-hover:bg-white group-hover:shadow-2xl group-hover:shadow-slate-200/50 transition-all duration-500">
+                    {cloneElement(tech.icon as ReactElement, { className: "w-8 h-8" })}
+                  </div>
+                  <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-slate-900 transition-colors">{tech.name}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
-          <h1 className="text-6xl md:text-9xl font-black tracking-tighter leading-[0.85] mb-10 text-slate-900">
-            CRAFTING <br/>
-            <span className="text-gradient">SYSTEMS</span><br/>
-            AT SCALE
-          </h1>
-
-          <p className="max-w-2xl mx-auto text-lg md:text-xl text-slate-600 font-medium leading-relaxed mb-12">
-            {PERSONAL_INFO.about}
+          <p className="max-w-3xl mx-auto text-xl md:text-2xl text-slate-900 font-black tracking-tight leading-snug mb-12 uppercase">
+            Architecting the future of scalable web ecosystems with 13+ years of engineering mastery.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
@@ -174,22 +177,18 @@ const Hero = () => {
               Explore Portfolio
             </a>
             <a 
-              href="#expertise" 
+              href={PERSONAL_INFO.resumeUrl}
+              target="_blank"
+              rel="noreferrer"
+              download
               className="px-10 py-5 glass text-slate-900 font-black rounded-2xl hover:bg-white transition-all w-full sm:w-auto flex items-center justify-center gap-2 shadow-sm"
             >
-              Technology Stack <ChevronRight className="w-5 h-5 text-brand" />
+              Download Resume <FileText className="w-5 h-5 text-brand" />
             </a>
           </div>
         </motion.div>
       </div>
 
-      <motion.div 
-        animate={{ y: [0, 10, 0] }}
-        transition={{ repeat: Infinity, duration: 2 }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 opacity-30 text-slate-900"
-      >
-        <ArrowDown className="w-8 h-8" />
-      </motion.div>
     </section>
   );
 };
@@ -247,12 +246,12 @@ const PortfolioGrid = () => {
   const filteredProjects = activeFilter === 'All' ? PROJECTS : PROJECTS.filter(p => p.category === activeFilter);
 
   return (
-    <section id="projects" className="py-32 bg-white border-y border-slate-100">
+    <section id="projects" className="py-12 bg-white border-y border-slate-100">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-12 mb-20">
           <h2 className="text-4xl md:text-6xl font-black tracking-tighter uppercase italic text-slate-900">Work Archive</h2>
           
-          <div className="flex flex-wrap gap-2 p-1.5 bg-slate-50 rounded-2xl border border-slate-100">
+          <div className="flex flex-wrap gap-1 p-1.5 bg-slate-50 rounded-2xl border border-slate-100">
             {filters.map(f => (
               <button
                 key={f}
@@ -284,7 +283,7 @@ const PortfolioGrid = () => {
                 </div>
 
                 <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-6">
+                  <div className="flex items-center gap-2 mb-6">
                     <span className="px-4 py-1.5 bg-brand text-black text-[10px] font-black uppercase tracking-widest rounded-full">
                       {project.category}
                     </span>
@@ -322,7 +321,7 @@ const PortfolioGrid = () => {
 
 const Experience = () => {
   return (
-    <section id="experience" className="py-32 bg-slate-50">
+    <section id="experience" className="py-12 bg-slate-50">
       <div className="container mx-auto px-6">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-20">
@@ -378,7 +377,7 @@ const Experience = () => {
 
 const Impact = () => {
   return (
-    <section id="impact" className="py-32 relative overflow-hidden bg-white">
+    <section id="impact" className="py-12 relative overflow-hidden bg-white">
       <div className="container mx-auto px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
           <div>
@@ -422,92 +421,80 @@ const Impact = () => {
 };
 
 const Contact = () => {
-  const [formState, setFormState] = useState({ name: '', email: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
-  };
-
   return (
-    <section id="contact" className="py-32 bg-slate-50">
+    <section id="contact" className="py-12 bg-slate-50">
       <div className="container mx-auto px-6">
         <div className="max-w-5xl mx-auto bg-white border border-slate-100 rounded-[60px] p-12 md:p-20 overflow-hidden relative shadow-2xl shadow-slate-200/50">
           <div className="absolute -top-20 -right-20 w-80 h-80 bg-brand/5 rounded-full blur-[100px]" />
           
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20">
             <div>
-              <h2 className="text-5xl md:text-7xl font-black tracking-tighter mb-10 leading-none text-slate-900">LET'S <br/> SYNC UP<span className="text-brand">.</span></h2>
+              <div className="mb-10 relative inline-block">
+                <div className="absolute inset-0 bg-brand rounded-[40px] rotate-3 -z-10 opacity-20" />
+                <img 
+                  referrerPolicy="no-referrer"
+                  src={PERSONAL_INFO.profileImage} 
+                  alt={PERSONAL_INFO.name}
+                  className="w-32 h-32 md:w-40 md:h-40 rounded-[40px] object-cover border-4 border-white shadow-xl shadow-slate-200/50" 
+                />
+                <div className="absolute -bottom-4 -right-4 w-12 h-12 bg-white rounded-2xl flex items-center justify-center shadow-lg border border-slate-100">
+                  <Briefcase className="w-6 h-6 text-brand" />
+                </div>
+              </div>
               <div className="space-y-8">
                 <div className="flex items-center gap-6 group">
-                  <div className="w-14 h-14 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-all"><Mail /></div>
+                  <a 
+                    href={`mailto:${PERSONAL_INFO.email}`}
+                    className="w-14 h-14 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-all"
+                  >
+                    <Mail />
+                  </a>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Email Address</p>
-                    <p className="font-display font-black text-xl text-slate-900">{PERSONAL_INFO.email}</p>
+                    <a href={`mailto:${PERSONAL_INFO.email}`} className="font-display font-black text-xl text-slate-900 hover:text-brand transition-colors font-black">
+                      {PERSONAL_INFO.email}
+                    </a>
                   </div>
                 </div>
-                <div className="flex items-center gap-6 group">
+                <a 
+                  href={PERSONAL_INFO.linkedin}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="flex items-center gap-6 group"
+                >
                   <div className="w-14 h-14 bg-slate-50 border border-slate-100 rounded-2xl flex items-center justify-center text-brand group-hover:bg-brand group-hover:text-white transition-all"><Linkedin /></div>
                   <div>
                     <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Connect Pro</p>
                     <p className="font-display font-black text-xl text-slate-900">LinkedIn Profile</p>
                   </div>
-                </div>
+                </a>
+                <a 
+                  href={PERSONAL_INFO.resumeUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  download
+                  className="flex items-center gap-6 group"
+                >
+                  <div className="w-14 h-14 bg-slate-900 border border-slate-100 rounded-2xl flex items-center justify-center text-white group-hover:bg-brand transition-all"><FileText /></div>
+                  <div>
+                    <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Documentation</p>
+                    <p className="font-display font-black text-xl text-slate-900">Curriculum Vitae</p>
+                  </div>
+                </a>
               </div>
             </div>
 
-            <div className="relative">
-              {submitted ? (
-                <div className="h-full flex flex-col items-center justify-center text-center py-20">
-                  <div className="w-24 h-24 bg-brand/10 rounded-full flex items-center justify-center mb-10 text-brand">
-                    <Zap className="w-10 h-10" />
-                  </div>
-                  <h3 className="text-3xl font-black mb-4 uppercase text-slate-900">Message Relayed</h3>
-                  <p className="text-slate-500 font-medium">Your inquiry is in the queue. Expect a response soon.</p>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Context Agent</label>
-                      <input 
-                        required
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:ring-2 focus:ring-brand transition-all outline-none" 
-                        placeholder="Company / Name"
-                        value={formState.name}
-                        onChange={(e) => setFormState({...formState, name: e.target.value})}
-                      />
-                    </div>
-                    <div className="space-y-2">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Access Node</label>
-                      <input 
-                        required
-                        type="email"
-                        className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:ring-2 focus:ring-brand transition-all outline-none" 
-                        placeholder="email@node.com"
-                        value={formState.email}
-                        onChange={(e) => setFormState({...formState, email: e.target.value})}
-                      />
-                    </div>
-                  </div>
-                  <div className="space-y-2">
-                    <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-2">Transmission Data</label>
-                    <textarea 
-                      required
-                      rows={4}
-                      className="w-full bg-slate-50 border border-slate-100 rounded-2xl px-6 py-4 text-slate-900 focus:ring-2 focus:ring-brand transition-all resize-none outline-none" 
-                      placeholder="Project details, timeline, or architecture..."
-                      value={formState.message}
-                      onChange={(e) => setFormState({...formState, message: e.target.value})}
-                    />
-                  </div>
-                  <button className="w-full py-5 bg-slate-900 text-white font-black uppercase tracking-widest rounded-2xl hover:bg-brand transition-all flex items-center justify-center gap-4 group">
-                    Send Signal <ArrowUpRight className="w-6 h-6 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                  </button>
-                </form>
-              )}
+            <div className="rounded-[40px] overflow-hidden border border-slate-100 shadow-inner h-[400px] lg:h-auto min-h-[400px]">
+              <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3565.443215050281!2d79.2665006111937!3d26.666303970539328!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x397605e38386eebf%3A0x41867182b97177e3!2sNagla%20tula!5e0!3m2!1sen!2sin!4v1779184986492!5m2!1sen!2sin" 
+                width="100%" 
+                height="100%" 
+                style={{ border: 0 }} 
+                allowFullScreen={true} 
+                loading="lazy" 
+                referrerPolicy="no-referrer-when-downgrade"
+                title="Office Location"
+              ></iframe>
             </div>
           </div>
         </div>
@@ -518,7 +505,7 @@ const Contact = () => {
 
 const Footer = () => {
   return (
-    <footer className="py-20 bg-white border-t border-slate-100">
+    <footer className="py-5 bg-white border-t border-slate-100">
       <div className="container mx-auto px-6">
         <div className="flex flex-col md:flex-row justify-between items-center gap-12">
           <div className="flex items-center gap-3">
@@ -527,26 +514,22 @@ const Footer = () => {
              </div>
              <div>
                <h4 className="text-xl font-black leading-none uppercase tracking-tighter text-slate-900">Sanjay Tiwari</h4>
-               <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Engineering Leader</p>
+               <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Lead Software Engineer</p>
              </div>
           </div>
 
           <div className="flex items-center gap-8">
-            <a href="#" className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400"><Github className="w-5 h-5" /></a>
+            <a href="https://github.com/sanjay-tk" className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400"><Github className="w-5 h-5" /></a>
+             <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noreferrer" download className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400" title="Download CV"><FileText className="w-5 h-5 text-brand" /></a>
             <a href={PERSONAL_INFO.linkedin} className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400"><Linkedin className="w-5 h-5" /></a>
-            <a href="#" className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400"><Twitter className="w-5 h-5" /></a>
           </div>
         </div>
 
-        <div className="mt-20 pt-10 border-t border-slate-100 flex flex-col md:flex-row justify-between items-center gap-6">
-          <p className="text-[10px] font-black uppercase tracking-widest text-slate-400 italic">
+        <div className="mt-5 pt-2 border-t border-slate-100 flex flex-col md:flex-row justify-center items-center gap-6">
+          <p className="text-[10px] text-center font-black uppercase tracking-widest text-slate-400 italic">
             Designed for Performance • Built for Scale • © {new Date().getFullYear()} ST Archive
           </p>
-          <div className="flex gap-8">
-             <a href="#" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand transition-colors">Privacy</a>
-             <a href="#" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand transition-colors">Security</a>
-             <a href="#" className="text-[10px] font-black uppercase tracking-widest text-slate-400 hover:text-brand transition-colors">Download CV</a>
-          </div>
+          
         </div>
       </div>
     </footer>
