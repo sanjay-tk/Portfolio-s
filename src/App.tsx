@@ -79,7 +79,7 @@ const Navbar = () => {
             ))}
             <a 
               href="#contact" 
-              className="px-6 py-2.5 bg-slate-900 text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-brand hover:text-black transition-all active:scale-95"
+              className="px-6 py-2.5 bg-[#fbba00] text-white text-[10px] font-black uppercase tracking-widest rounded-full hover:bg-brand hover:text-black transition-all active:scale-95"
             >
               Contact
             </a>
@@ -130,11 +130,22 @@ const Navbar = () => {
 const Hero = () => {
   return (
     <section className="relative min-h-screen flex flex-col items-center justify-center pt-32 pb-10 overflow-hidden border-b border-black/5 bg-white">
+      {/* Tech Background Banner */}
+      <div className="absolute top-0 left-0 w-full h-full -z-10 bg-slate-900 pointer-events-none">
+        <img 
+          src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" 
+          alt="Tech Banner Background" 
+          className="w-full h-full object-cover opacity-10"
+          referrerPolicy="no-referrer"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white via-transparent to-white opacity-80" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.03]" />
+      </div>
+
       {/* Dynamic Background Elements */}
       <div className="absolute top-0 left-0 w-full h-full -z-10 pointer-events-none overflow-hidden">
-        <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-brand/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-[10%] right-[-5%] w-[35%] h-[35%] bg-blue-500/5 rounded-full blur-[100px]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full opacity-[0.03] bg-[radial-gradient(circle,rgba(0,0,0,0.1)_1px,transparent_1px)] bg-[size:40px_40px]" />
+        <div className="absolute top-[-10%] left-[-5%] w-[40%] h-[40%] bg-brand/10 rounded-full blur-[120px]" />
+        <div className="absolute bottom-[10%] right-[-5%] w-[35%] h-[35%] bg-blue-500/10 rounded-full blur-[100px]" />
       </div>
 
       <div className="container mx-auto px-6 text-center">
@@ -156,7 +167,7 @@ const Hero = () => {
                 { name: 'Architecture', icon: <Globe />, color: 'text-brand' },
               ].map((tech) => (
                 <div key={tech.name} className="flex flex-col items-center gap-3 group">
-                  <div className="w-12 h-12 bg-slate-50 border border-slate-100 rounded-[2.5rem] flex items-center justify-center text-slate-300 group-hover:text-slate-900 group-hover:bg-white group-hover:shadow-2xl group-hover:shadow-slate-200/50 transition-all duration-500">
+                  <div className="w-15 h-15 bg-slate-50 border border-slate-100 rounded-[2.5rem] flex items-center justify-center text-slate-300 group-hover:text-slate-900 group-hover:bg-white group-hover:shadow-2xl group-hover:shadow-slate-200/50 transition-all duration-500">
                     {cloneElement(tech.icon as ReactElement, { className: "w-8 h-8" })}
                   </div>
                   <span className="text-[10px] font-black uppercase tracking-widest text-slate-400 group-hover:text-slate-900 transition-colors">{tech.name}</span>
