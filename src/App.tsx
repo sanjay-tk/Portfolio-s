@@ -54,8 +54,8 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300`}>
-      <div className={`transition-all duration-300 ${isScrolled ? 'glass py-4 shadow-xl' : 'py-8'}`}>
+    <nav className={`fixed top-0 left-0 w-full z-50 transition-all duration-300 ${isScrolled ? 'bg-white/90 backdrop-blur-md shadow-md border-b border-slate-200/50' : 'bg-white/60 backdrop-blur-sm border-b border-slate-100/30'}`}>
+      <div className={`transition-all duration-300 ${isScrolled ? 'py-4' : 'py-6'}`}>
         <div className="container mx-auto px-6 flex justify-between items-center">
           <a href="#" className="flex items-center gap-3">
             <div className="w-10 h-10 bg-brand rounded-xl flex items-center justify-center rotate-3 group hover:rotate-0 transition-transform">
