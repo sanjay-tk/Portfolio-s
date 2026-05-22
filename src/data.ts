@@ -7,7 +7,7 @@ export const PERSONAL_INFO = {
   phone: "+91 9560324048",
   location: "Noida, Uttar Pradesh",
   linkedin: "https://linkedin.com/in/sanjay-tiwari-16b34336",
-  resumeUrl: "/resume_sanjay_tiwari.pdf",
+  resumeUrl: "/Sanjay_Tiwari_Resume_2.pdf",
   profileImage: "/profile.jpeg", // Update with your uploaded image name if different
   about: "Lead Engineer with 13+ years of experience building high-performance, scalable web applications for large-scale platforms like Hindustan Times. Expertise in JavaScript, modern frontend architecture, Core Web Vitals, accessibility (WCAG), and SEO. Proven track right in delivering high-performance UI systems with up to 65% optimization.",
 };
