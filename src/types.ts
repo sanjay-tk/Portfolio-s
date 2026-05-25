@@ -6,6 +6,7 @@ export interface Project {
   technologies: string[];
   metrics?: string;
   image?: string;
+  link?: string;
 }
 
 export interface Experience {

@@ -19,7 +19,8 @@ export const PROJECTS: Project[] = [
     description: "Rebuilt the major portal with a modern, high-performance responsive UI, focusing on core web vitals and user conversion.",
     category: "Frontend",
     technologies: ["React", "Custom CSS", "Webpack", "Lazy Loading"],
-    metrics: "40% faster TTI"
+    metrics: "40% faster TTI",
+    link: "https://www.htclassifieds.com/"
   },
   {
     id: "amp-integration",
@@ -35,7 +36,8 @@ export const PROJECTS: Project[] = [
     description: "A podcast distribution platform built with a custom WordPress architecture and advanced Gutenberg blocks.",
     category: "Backend",
     technologies: ["WordPress", "PHP", "React (Gutenberg)", "ACF", "CPTs"],
-    metrics: "Managed 10,000+ audio entries"
+    metrics: "Managed 10,000+ audio entries",
+    link: "https://www.htsmartcast.com/"
   },
   {
     id: "modular-ui-arch",

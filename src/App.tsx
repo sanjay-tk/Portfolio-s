@@ -317,9 +317,23 @@ const PortfolioGrid = () => {
                     ))}
                   </div>
 
-                  <a href="#" className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-widest text-slate-900 group-hover:gap-6 transition-all group-hover:text-brand">
-                    View Technical Brief <ArrowUpRight className="w-5 h-5 text-brand" />
-                  </a>
+                  {project.link ? (
+                    <a 
+                      href={project.link} 
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-widest text-slate-900 group-hover:gap-6 transition-all group-hover:text-brand"
+                    >
+                      Visit Live Website <ArrowUpRight className="w-5 h-5 text-brand" />
+                    </a>
+                  ) : (
+                    <a 
+                      href="#" 
+                      className="inline-flex items-center gap-4 text-xs font-black uppercase tracking-widest text-slate-900 group-hover:gap-6 transition-all group-hover:text-brand"
+                    >
+                      View Technical Brief <ArrowUpRight className="w-5 h-5 text-brand" />
+                    </a>
+                  )}
                 </div>
               </motion.div>
             ))}
