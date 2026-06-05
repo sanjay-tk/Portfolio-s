@@ -31,13 +31,13 @@ export const PROJECTS: Project[] = [
     metrics: "65% reduction in load time"
   },
   {
-    id: "ht-smart-cast",
-    title: "HT Smart Cast",
+    id: "ht-media",
+    title: "HT Media: India's Leading Print & Digital Media Company",
     description: "A podcast distribution platform built with a custom WordPress architecture and advanced Gutenberg blocks.",
     category: "Backend",
     technologies: ["WordPress", "PHP", "React (Gutenberg)", "ACF", "CPTs"],
     metrics: "Managed 10,000+ audio entries",
-    link: "https://www.htsmartcast.com/"
+    link: "https://www.htmedia.in/"
   },
   {
     id: "modular-ui-arch",
@@ -61,7 +61,7 @@ export const EXPERIENCES: Experience[] = [
       "Optimized load time with lazy loading, Webpack, and AMP compliance.",
       "Applying WCAG accessibility standards and improving Core Web Vitals (LCP/FCP/CLS)."
     ],
-    keyProjects: ["HT Classifieds", "HT Corporate", "HT Smart Cast", "AMP Integration"]
+    keyProjects: ["HT Classifieds", "HT Corporate", "HT Media", "AMP Integration"]
   },
   {
     id: "goobyflight",
