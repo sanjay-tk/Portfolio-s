@@ -27,15 +27,15 @@ export const PROJECTS: Project[] = [
     title: "AMP Integration Framework",
     description: "Developed a structural conversion system to transform legacy HTML to AMP structure at scale for news media platforms.",
     category: "System Design",
-    technologies: ["JavaScript", "AMP", "Node.js", "Server-side Rendering"],
+    technologies: ["JavaScript", "AMP", "Server-side Rendering"],
     metrics: "65% reduction in load time"
   },
   {
     id: "ht-media",
     title: "HT Media: India's Leading Print & Digital Media Company",
-    description: "A podcast distribution platform built with a custom WordPress architecture and advanced Gutenberg blocks.",
+    description: "One of India's top media companies serving news, entertainment, ad solutions on print, digital & radio, enticing readers & listeners across India.",
     category: "Backend",
-    technologies: ["WordPress", "PHP", "React (Gutenberg)", "ACF", "CPTs"],
+    technologies: ["WordPress", "PHP", "ACF"],
     metrics: "Managed 10,000+ audio entries",
     link: "https://www.htmedia.in/"
   },
@@ -44,7 +44,7 @@ export const PROJECTS: Project[] = [
     title: "Modular Frontend Architecture",
     description: "Designed and implemented a shared component library for Goobyflight's travel portals to ensure consistency and performance.",
     category: "System Design",
-    technologies: ["Redux", "SASS", "BEM", "CI/CD"],
+    technologies: ["SASS", "BEM", "CI/CD"],
     metrics: "30% performance boost across legacy apps"
   }
 ];

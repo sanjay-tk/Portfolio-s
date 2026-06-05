@@ -6,7 +6,6 @@
 import { useState, useEffect, cloneElement, type ReactElement } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { 
-  Github, 
   Linkedin, 
   Mail, 
   Phone, 
@@ -528,39 +527,6 @@ const Contact = () => {
   );
 };
 
-const Footer = () => {
-  return (
-    <footer className="py-5 bg-white border-t border-slate-100">
-      <div className="container mx-auto px-6">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-12">
-          <div className="flex items-center gap-3">
-             <div className="w-12 h-12 bg-slate-900 rounded-xl flex items-center justify-center">
-                <span className="text-white font-black text-2xl">S</span>
-             </div>
-             <div>
-               <h4 className="text-xl font-black leading-none uppercase tracking-tighter text-slate-900">Sanjay Tiwari</h4>
-               <p className="text-[10px] font-black uppercase tracking-widest text-slate-400">Lead Software Engineer</p>
-             </div>
-          </div>
-
-          <div className="flex items-center gap-8">
-            <a href="https://github.com/sanjay-tk" className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400"><Github className="w-5 h-5" /></a>
-             <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noreferrer" download className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400" title="Download CV"><FileText className="w-5 h-5 text-brand" /></a>
-            <a href={PERSONAL_INFO.linkedin} className="p-3 bg-slate-50 border border-slate-100 rounded-full hover:text-brand hover:border-brand transition-colors text-slate-400"><Linkedin className="w-5 h-5" /></a>
-          </div>
-        </div>
-
-        <div className="mt-5 pt-2 border-t border-slate-100 flex flex-col md:flex-row justify-center items-center gap-6">
-          <p className="text-[10px] text-center font-black uppercase tracking-widest text-slate-400 italic">
-            Designed for Performance • Built for Scale • © {new Date().getFullYear()} ST Archive
-          </p>
-          
-        </div>
-      </div>
-    </footer>
-  );
-};
-
 export default function App() {
   return (
     <div className="min-h-screen selection:bg-brand selection:text-black">
@@ -573,7 +539,6 @@ export default function App() {
         <Impact />
         <Contact />
       </main>
-      <Footer />
     </div>
   );
 }
