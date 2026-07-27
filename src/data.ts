@@ -18,7 +18,7 @@ export const PROJECTS: Project[] = [
     title: "HT Classifieds",
     description: "Rebuilt the major portal with a modern, high-performance responsive UI, focusing on core web vitals and user conversion.",
     category: "Frontend",
-    technologies: ["React", "Custom CSS", "Webpack", "Lazy Loading"],
+    technologies: ["React", "Custom CSS", "Lazy Loading"],
     metrics: "40% faster TTI",
     link: "https://www.htclassifieds.com/"
   },
@@ -93,11 +93,11 @@ export const EXPERIENCES: Experience[] = [
 export const SKILL_GROUPS: SkillGroup[] = [
   {
     category: "Frontend Stack",
-    skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "jQuery", "React.js", "Tailwind CSS", "MUI", "Redux"]
+    skills: ["HTML5", "CSS3", "JavaScript (ES6+)", "Kendo UI", "React.js", "Tailwind", "MUI", "Bootstrap 5"]
   },
   {
     category: "Core Engine",
-    skills: ["Performance Optimization", "Core Web Vitals", "Webpack", "SASS/LESS", "BEM Methodology"]
+    skills: ["Performance Optimization", "Core Web Vitals", "SASS/LESS", "BEM Methodology"]
   },
   {
     category: "CMS & Backend",
